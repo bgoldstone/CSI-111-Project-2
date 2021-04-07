@@ -13,14 +13,21 @@ public class Mound {
     /**
      * Adds one day to the life of a Mushroom
      */
-    public void addOneDay(){
+    public void addOneDay(int lifespan){
         for (Mushroom mushroom : mound){
-            if(mushroom.getNumberOfDays() == mushroom.getNumberOfDays())
+            if(mushroom.getNumberOfDays() == lifespan){
+                mound.remove(mushroom);
+            }
             mushroom.setNumberOfDays(mushroom.getNumberOfDays() + 1);
         }
     }
 
-    public void addSpores(){
+    public void addSpores(String[] fields){
 
     }
+
+    public void growMushrooms(String[] fields){
+       if(amountOfNutrients < 0) return;
+    }
+
 }
