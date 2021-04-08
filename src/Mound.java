@@ -8,22 +8,23 @@ public class Mound {
     public Mound(int amountOfNutrients) {
         this.amountOfNutrients = amountOfNutrients;
         mound = new LinkedList<Mushroom>();
-        numberOfSpores = 1;
     }
 
     /**
      * Adds one day to the life of a Mushroom
      */
-    public void addOneDay(int lifespan) {
+    public void addOneDay(int lifespan, String[] fields) {
         for (Mushroom mushroom : mound) {
+            mushroom.setNumberOfDays(mushroom.getNumberOfDays() + 1);
             if (mushroom.getNumberOfDays() == lifespan) {
                 mound.remove(mushroom);
+                addSpores(fields);
             }
-            mushroom.setNumberOfDays(mushroom.getNumberOfDays() + 1);
         }
     }
 
     public void addSpores(String[] fields) {
+
 
     }
 
