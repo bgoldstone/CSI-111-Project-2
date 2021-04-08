@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.io.*;
 
-public class Field{
+public class Field {
     private File fileName;
     private Scanner fileReader;
     private String line;
@@ -17,7 +17,7 @@ public class Field{
             fileName = new File(scan.nextLine());
         }
         try {
-            fileReader = new Scanner(fileName);
+            fileReader = new Scanner(fileName, "UTF-8");
             boolean firstFieldLine = true;
             int rowNumber = 0;
             while (fileReader.hasNextLine()) {
