@@ -4,7 +4,6 @@ import java.io.*;
 public class Field {
     private File fileName;
     private Scanner fileReader;
-    private String line;
     private int lifespan;
     private int[][] field;
     private int[] firstMushroom = new int[2];
@@ -20,6 +19,7 @@ public class Field {
             fileReader = new Scanner(fileName, "UTF-8");
             boolean firstFieldLine = true;
             int rowNumber = 0;
+            String line;
             while (fileReader.hasNextLine()) {
                 line = fileReader.nextLine();
                 if (line.contains("Lifespan")) {
