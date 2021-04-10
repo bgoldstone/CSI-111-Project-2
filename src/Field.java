@@ -61,8 +61,8 @@ public class Field {
                     }
                     rowNumber++;
                 }
-
             }
+            fileReader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace(System.out);
         }
