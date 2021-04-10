@@ -27,12 +27,12 @@ public class Field {
             fileName = new File(scan.nextLine());
             sb.append("What is the file name? ").append(fileName.getName()).append("\n");
         }
-                try {
-                    pw = new PrintWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt");
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace(System.out);
-                }
-            pw.println(sb);
+        try {
+            pw = new PrintWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(System.out);
+        }
+        pw.println(sb);
         try {
             //Reads in file
             Scanner fileReader = new Scanner(fileName);
@@ -83,11 +83,9 @@ public class Field {
                     maxNumberOfMushroomsInADay += mound.getMound().size();
                     position[0] = i;
                     position[1] = j;
-                    if (numberRemoved > 0) {
-                        for (int k = 0; k < numberRemoved; k++) {
-                            addSpores(position);
-                        }
-                    }
+                    if (numberRemoved > 0)
+                        addSpores(position, numberRemoved);
+
                 }
                 fieldState();
                 numberOfDays++;
@@ -114,14 +112,15 @@ public class Field {
     /**
      * Adds spores given position
      *
-     * @param position location in the field array
+     * @param position    Location in the field array
+     * @param numberToAdd Number of spores to add
      */
-    public void addSpores(int[] position) {
+    public void addSpores(int[] position, int numberToAdd) {
         try {
-            field[position[0] - 1][position[1]].addSpores();
-            field[position[0] + 1][position[1]].addSpores();
-            field[position[0]][position[1] - 1].addSpores();
-            field[position[0]][position[1] + 1].addSpores();
+            field[position[0] - 1][position[1]].addSpores(numberToAdd);
+            field[position[0] + 1][position[1]].addSpores(numberToAdd);
+            field[position[0]][position[1] - 1].addSpores(numberToAdd);
+            field[position[0]][position[1] + 1].addSpores(numberToAdd);
         } catch (IndexOutOfBoundsException ignored) {
         }
     }
@@ -149,7 +148,7 @@ public class Field {
         for (Mound[] row : field) {
             pw.print("|");
             for (Mound mound : row) {
-                pw.print("M" + mound.getMound().size() + "|" );
+                pw.print("M" + mound.getMound().size() + "|");
             }
             pw.print("\n");
         }

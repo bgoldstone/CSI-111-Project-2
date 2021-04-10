@@ -31,34 +31,36 @@ public class Mound {
     public LinkedList<Mushroom> getMound() {
         return mound;
     }
+
     public boolean getIsDone() {
         return isDone;
     }
+
     /**
      * Adds one day to the life of a Mushroom
      */
 
-    public void addSpores() {
-        numberOfSpores++;
+    public void addSpores(int numberToAdd) {
+        numberOfSpores += numberToAdd;
     }
 
-    public void growMushrooms(boolean isFirstMushroom){
+    public void growMushrooms(boolean isFirstMushroom) {
         mound.add(new Mushroom());
         amountOfNutrients--;
     }
 
     public int growMushrooms(int lifespan) {
         int numberRemoved = 0;
-        if(mound.isEmpty()){
+        if (mound.isEmpty()) {
             return numberRemoved;
         }
 
-        if(numberOfSpores > 0 && amountOfNutrients > 0){
+        if (numberOfSpores > 0 && amountOfNutrients > 0) {
             mound.add(new Mushroom());
             amountOfNutrients--;
         }
         for (Mushroom mushroom : mound) {
-            if(mushroom.getNumberOfDays() == lifespan){
+            if (mushroom.getNumberOfDays() == lifespan) {
                 mound.remove(mushroom);
                 numberRemoved--;
             }
@@ -70,6 +72,6 @@ public class Mound {
             }
             amountOfNutrients--;
         }
-        return(numberRemoved);
+        return (numberRemoved);
     }
 }
