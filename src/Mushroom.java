@@ -6,11 +6,9 @@ public class Mushroom {
 
     /**
      * Initializes Mushroom Object
-     *
-     * @param numberOfDays Number of days a mushroom lives
      */
-    public Mushroom(int numberOfDays) {
-        this.setNumberOfDays(numberOfDays);
+    public Mushroom() {
+        this.numberOfDays = 0;
     }
 
     public int getNumberOfDays() {
