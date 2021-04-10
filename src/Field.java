@@ -118,10 +118,10 @@ public class Field {
      */
     public void addSpores(int[] position) {
         try {
-            field[position[0] - 1][position[1]].setNumberOfSpores(field[position[0] - 1][position[1]].getNumberOfSpores() + 1);
-            field[position[0] + 1][position[1]].setNumberOfSpores(field[position[0] + 1][position[1]].getNumberOfSpores() + 1);
-            field[position[0]][position[1] - 1].setNumberOfSpores(field[position[0]][position[1] - 1].getNumberOfSpores() + 1);
-            field[position[0]][position[1] + 1].setNumberOfSpores(field[position[0]][position[1] + 1].getNumberOfSpores() + 1);
+            field[position[0] - 1][position[1]].addSpores();
+            field[position[0] + 1][position[1]].addSpores();
+            field[position[0]][position[1] - 1].addSpores();
+            field[position[0]][position[1] + 1].addSpores();
         } catch (IndexOutOfBoundsException ignored) {
         }
     }

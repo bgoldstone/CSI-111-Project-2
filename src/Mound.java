@@ -5,7 +5,6 @@ public class Mound {
     private int numberOfSpores;
     private LinkedList<Mushroom> mound;
     private boolean isDone = false;
-    private int numberRemoved;
 
     public Mound(int amountOfNutrients) {
         this.amountOfNutrients = amountOfNutrients;
@@ -38,11 +37,9 @@ public class Mound {
     /**
      * Adds one day to the life of a Mushroom
      */
-    public void addOneDay() {
-
-    }
 
     public void addSpores() {
+        numberOfSpores++;
     }
 
     public void growMushrooms(boolean isFirstMushroom){
@@ -51,7 +48,7 @@ public class Mound {
     }
 
     public int growMushrooms(int lifespan) {
-        numberRemoved = 0;
+        int numberRemoved = 0;
         if(mound.isEmpty()){
             return numberRemoved;
         }
