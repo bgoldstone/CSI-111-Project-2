@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
+
 /**
  * Object of a Field. Contains an Array of Mounds
  *
@@ -103,17 +104,9 @@ public class Field {
                 maxNumInDay = maxNumberOfMushroomsInADay;
                 maxDay = numberOfDays;
             }
-            keepGoing = false;
             numberOfDays++;
             //Checks if all mounds are done
-            for (Mound[] row : field) {
-                for (Mound mound : row) {
-                    if (!mound.getIsDone()) {
-                        keepGoing = true;
-                        break;
-                    }
-                }
-            }
+            keepGoing = isDone();
         }
         //prints summary to file
         summarize();
@@ -166,6 +159,21 @@ public class Field {
             }
             pw.println();
         }
+    }
+
+    /**
+     * Finds if all fields are done
+     *
+     * @return boolean
+     */
+    public boolean isDone() {
+        int totalNumberOfMushrooms = 0;
+        for (Mound[] row : field) {
+            for (Mound mound : row) {
+                totalNumberOfMushrooms += mound.getMound().size();
+            }
+        }
+        return totalNumberOfMushrooms > 0;
     }
 
     /**

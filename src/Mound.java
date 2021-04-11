@@ -8,7 +8,6 @@ public class Mound {
     private int amountOfNutrients;
     private int numberOfSpores;
     private LinkedList<Mushroom> mound;
-    private boolean isDone = false;
 
     /**
      * Mound Constructor.
@@ -66,15 +65,6 @@ public class Mound {
         return mound;
     }
 
-    /**
-     * Gets true if the mound is empty of nutrients and done growing.
-     * False if still has nutrients and is still growing.
-     *
-     * @return isDone
-     */
-    public boolean getIsDone() {
-        return isDone;
-    }
 
     /**
      * Adds one day to the life of a Mushroom
@@ -120,10 +110,7 @@ public class Mound {
                 numberRemoved--;
             }
             //If mound is out of nutrients and no mushrooms in mound, this mound is done.
-            if (amountOfNutrients <= 0 && mound.isEmpty()) {
-                isDone = true;
-                return numberRemoved;
-            } else {
+            else {
                 //Grows each mushroom in mound for simulation
                 mushroom.setNumberOfDays(mushroom.getNumberOfDays() + 1);
             }
