@@ -18,14 +18,16 @@ public class Field {
     public Field() throws IOException {
         //Prompts user for file name.
         StringBuilder sb = new StringBuilder();
-        System.out.println("What is the file name? ");
+        System.out.print("What is the file name? ");
         Scanner scan = new Scanner(System.in);
         File fileName = new File(scan.nextLine());
+        System.out.println();
         sb.append("What is the file name? ").append(fileName.getName()).append("\n");
         //If file name does not exist, keep prompting user.
         while (!fileName.exists()) {
-            System.out.println("Invalid file name! \nWhat is the correct file name?");
+            System.out.print("Invalid file name! \nWhat is the correct file name?");
             fileName = new File(scan.nextLine());
+            System.out.println();
             sb.append("What is the file name? ").append(fileName.getName()).append("\n");
         }
         //Initializes output file.
@@ -167,13 +169,14 @@ public class Field {
      * @return boolean
      */
     public boolean isDone() {
-        int totalNumberOfMushrooms = 0;
+        int totalNumberOfMushroomsSpores = 0;
         for (Mound[] row : field) {
             for (Mound mound : row) {
-                totalNumberOfMushrooms += mound.getMound().size();
+                totalNumberOfMushroomsSpores += mound.getMound().size();
+                totalNumberOfMushroomsSpores += mound.getNumberOfSpores();
             }
         }
-        return totalNumberOfMushrooms > 0;
+        return totalNumberOfMushroomsSpores > 0;
     }
 
     /**
