@@ -79,14 +79,14 @@ public class Field {
                         addSpores(position, numberRemoved);
 
                 }
-                fieldState();
-                numberOfDays++;
             }
+            fieldState();
             if (this.maxNumInDay < maxNumberOfMushroomsInADay) {
                 this.maxNumInDay = maxNumberOfMushroomsInADay;
-                maxDay = numberOfDays--;
+                maxDay = numberOfDays;
             }
             keepGoing = false;
+            numberOfDays++;
             for (Mound[] row : field) {
                 for (Mound mound : row) {
                     if (!mound.getIsDone()) {
@@ -95,7 +95,6 @@ public class Field {
                     }
                 }
             }
-            numberOfDays++;
         }
         summarize();
     }
@@ -135,7 +134,7 @@ public class Field {
      * Gives # of Mushrooms in each mound per day
      */
     public void fieldState() throws IOException{
-        bw.write("\nDay:" + numberOfDays);
+        bw.write("\nDay:" + numberOfDays + "\n");
         for (Mound[] row : field) {
             bw.write("|");
             for (Mound mound : row) {
