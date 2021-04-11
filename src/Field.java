@@ -28,7 +28,7 @@ public class Field {
             sb.append("What is the file name? ").append(fileName.getName()).append("\n");
         }
         //Initializes output file.
-        pw = new PrintWriter(new FileWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt"));
+        pw = new PrintWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt");
         //Writes file prompt as lines in new file.
         pw.print(sb);
 
