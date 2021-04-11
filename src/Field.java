@@ -98,7 +98,6 @@ public class Field {
             numberOfDays++;
         }
         summarize();
-        bw.close();
     }
 
     /**
@@ -144,5 +143,8 @@ public class Field {
             }
             bw.write("\n");
         }
+    }
+    public void closeWriter() throws IOException{
+        bw.close();
     }
 }

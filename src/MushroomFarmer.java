@@ -10,5 +10,6 @@ public class MushroomFarmer {
         field.simulate();
         //Summarizes Farming Results
         field.summarize();
+        field.closeWriter();
     }
 }
