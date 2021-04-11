@@ -12,7 +12,7 @@ public class Field {
     private int numberOfDays = 0; //Number of days passed in simulation.
     private int maxNumInDay = 0; //Maximum number of mushrooms in a day.
     private int maxDay = 0; //The day the maximum number of mushrooms happened on.
-    private BufferedWriter bw; //Writes to output file.
+    private PrintWriter pw; //Writes to output file.
 
     public Field() throws IOException {
         //Prompts user for file name.
@@ -28,9 +28,9 @@ public class Field {
             sb.append("What is the file name? ").append(fileName.getName()).append("\n");
         }
         //Initializes output file.
-        bw = new BufferedWriter(new FileWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt"));
+        pw = new PrintWriter(new FileWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt"));
         //Writes file prompt as lines in new file.
-        bw.write(sb.toString());
+        pw.print(sb);
 
         //Reads in file.
         Scanner fileReader = new Scanner(fileName);
@@ -142,12 +142,12 @@ public class Field {
      * @throws IOException
      */
     public void summarize() throws IOException {
-        bw.write(String.format("The maximum number of mushrooms on a single day was %d on day %d ", maxNumInDay, numberOfDays));
-        bw.write("\nThe nutrients still remaining in the field looks like this:");
+        pw.print(String.format("The maximum number of mushrooms on a single day was %d on day %d ", maxNumInDay, maxDay));
+        pw.print("\nThe nutrients still remaining in the field looks like this:");
         for (Mound[] row : field) {
-            bw.write("\n|");
+            pw.print("\n|");
             for (Mound mound : row) {
-                bw.write(String.format("%d|", mound.getAmountOfNutrients()));
+                pw.print(String.format("%d|", mound.getAmountOfNutrients()));
             }
         }
     }
@@ -158,13 +158,13 @@ public class Field {
      * @throws IOException
      */
     public void fieldState() throws IOException {
-        bw.write("\nDay:" + numberOfDays + "\n");
+        pw.print("\nDay:" + numberOfDays + "\n");
         for (Mound[] row : field) {
-            bw.write("|");
+            pw.print("|");
             for (Mound mound : row) {
-                bw.write("M" + mound.getMound().size() + "|");
+                pw.print("M" + mound.getMound().size() + "|");
             }
-            bw.newLine();
+            pw.println();
         }
     }
 
@@ -174,6 +174,6 @@ public class Field {
      * @throws IOException
      */
     public void closeWriter() throws IOException {
-        bw.close();
+        pw.close();
     }
 }

@@ -17,7 +17,7 @@ public class MushroomFarmer {
         field.simulate();
         //Summarizes farming results.
         field.summarize();
-        //Closes BufferedWriter
+        //Closes PrintWriter
         field.closeWriter();
     }
 }
