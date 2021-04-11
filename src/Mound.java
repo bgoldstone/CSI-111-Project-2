@@ -1,7 +1,8 @@
 import java.util.LinkedList;
-
 /**
  * Creates an object of a Mound to store mushroom objects.
+ *
+ * @author Ben Goldstone
  */
 public class Mound {
     private int amountOfNutrients;

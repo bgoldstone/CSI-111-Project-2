@@ -1,8 +1,9 @@
 import java.io.*;
 import java.util.Scanner;
-
 /**
  * Object of a Field. Contains an Array of Mounds
+ *
+ * @author Ben Goldstone
  */
 public class Field {
     private int lifespan; //Lifespan of a mushroom.

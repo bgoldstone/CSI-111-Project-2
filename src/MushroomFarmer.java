@@ -1,7 +1,13 @@
 import java.io.IOException;
 
 /**
- * Simulates farming of mushrooms
+ * Simulates a mushroom farm using mounds and accounting for nutrient levels and spores.
+ *
+ * @author Ben Goldstone
+ */
+/*
+    Instructor: Professor Joseph Helsing
+    Date: 4/11/2021
  */
 public class MushroomFarmer {
     public static void main(String[] args) throws IOException {
