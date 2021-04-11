@@ -5,11 +5,13 @@ import java.io.IOException;
  */
 public class MushroomFarmer {
     public static void main(String[] args) throws IOException {
+        //Creates new field.
         Field field = new Field();
-        //Simulates Farming
+        //Simulates farming simulation.
         field.simulate();
-        //Summarizes Farming Results
+        //Summarizes farming results.
         field.summarize();
+        //Closes BufferedWriter
         field.closeWriter();
     }
 }
