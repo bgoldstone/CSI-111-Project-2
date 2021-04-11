@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+
 /**
  * Creates an object of a Mound to store mushroom objects.
  *
@@ -92,17 +93,16 @@ public class Mound {
         if (mound.isEmpty()) {
             return numberRemoved;
         }
-        //if more than 0 spores exist
-        for (int i = 0; i < numberOfSpores; i++) {
-            //if nutrients available, grow spores, else spores won't grow.
-            if (amountOfNutrients > 0) {
-                mound.add(new Mushroom());
-                amountOfNutrients--;
+        //if more than 0 spores exist and nutrients available
+        if (amountOfNutrients > 0) {
+            for (int i = 0; i < numberOfSpores; i++) {
+                //if nutrients available, grow spores, else spores won't grow.
+                if (amountOfNutrients > 0) {
+                    mound.add(new Mushroom());
+                    amountOfNutrients--;
+                }
             }
         }
-        //At end, Set numberOfSpores back to zero.
-        if (numberOfSpores > 0) numberOfSpores = 0;
-
         for (Mushroom mushroom : mound) {
             //If it is the mushrooms' lifespan, remove the mushroom.
             if (mushroom.getNumberOfDays() == lifespan) {

@@ -177,8 +177,10 @@ public class Field {
         int totalNumberOfMushroomsSpores = 0;
         for (Mound[] row : field) {
             for (Mound mound : row) {
-                totalNumberOfMushroomsSpores += mound.getMound().size();
-                totalNumberOfMushroomsSpores += mound.getNumberOfSpores();
+                if(mound.getMound().size() > 0)
+                totalNumberOfMushroomsSpores += 1;
+                if (mound.getAmountOfNutrients() > 0 && mound.getNumberOfSpores() > 0)
+                    totalNumberOfMushroomsSpores += 1;
             }
         }
         return totalNumberOfMushroomsSpores > 0;
