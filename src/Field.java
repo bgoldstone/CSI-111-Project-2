@@ -94,8 +94,10 @@ public class Field {
                     position[0] = i;
                     position[1] = j;
                     //If any mushrooms were removed from mound in position [i][j] add spores.
-                    if (numberRemoved > 0)
+                    for (int k = 0; k < numberRemoved; k++) {
                         addSpores(position, numberRemoved);
+                    }
+
 
                 }
             }
@@ -121,15 +123,12 @@ public class Field {
      * @param numberToAdd Number of spores to add
      */
     public void addSpores(int[] position, int numberToAdd) {
-        if (position[0] >= 1)
+        try {
             field[position[0] - 1][position[1]].addSpores(numberToAdd);
-        if (position[0] < field.length - 1)
             field[position[0] + 1][position[1]].addSpores(numberToAdd);
-        if (position[1] >= 1)
             field[position[0]][position[1] - 1].addSpores(numberToAdd);
-        if (position[1] < field.length - 1)
             field[position[0]][position[1] + 1].addSpores(numberToAdd);
-
+        } catch (IndexOutOfBoundsException e) {}
     }
 
     /**
@@ -157,6 +156,7 @@ public class Field {
      */
     public void fieldState() throws IOException {
         pw.print("\nDay:" + numberOfDays + "\n");
+        System.out.println("Day: " + numberOfDays);
         for (Mound[] row : field) {
             int numOfMushrooms = 0;
             pw.print("|");
@@ -177,9 +177,9 @@ public class Field {
         int totalNumberOfMushroomsSpores = 0;
         for (Mound[] row : field) {
             for (Mound mound : row) {
-                if(mound.getMound().size() > 0)
-                totalNumberOfMushroomsSpores += 1;
                 if (mound.getAmountOfNutrients() > 0 && mound.getNumberOfSpores() > 0)
+                    totalNumberOfMushroomsSpores += 1;
+                if (mound.getMound().size() > 0)
                     totalNumberOfMushroomsSpores += 1;
             }
         }

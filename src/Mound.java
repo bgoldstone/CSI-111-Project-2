@@ -96,15 +96,14 @@ public class Mound {
         //return numberRemoved;
         //}
         //if more than 0 spores exist and nutrients available
-        if (amountOfNutrients > 0) {
-            for (int i = 0; i < numberOfSpores; i++) {
-                //if nutrients available, grow spores, else spores won't grow.
-                if (amountOfNutrients > 0) {
-                    mound.add(new Mushroom());
-                    amountOfNutrients--;
-                }
+        for (int i = 0; i < numberOfSpores; i++) {
+            //if nutrients available, grow spores, else spores won't grow.
+            if (amountOfNutrients > 0) {
+                mound.add(new Mushroom());
+                amountOfNutrients--;
             }
         }
+
         for (Mushroom mushroom : mound) {
             //If it is the mushrooms' lifespan, remove the mushroom.
             if (mushroom.getNumberOfDays() == lifespan) {
@@ -118,9 +117,10 @@ public class Mound {
             }
         }
         //Removes mushrooms from LinkedList
-        for(Mushroom mushroom: remove){
+        for (Mushroom mushroom : remove) {
             mound.remove(mushroom);
         }
+
         return (numberRemoved);
     }
 }
