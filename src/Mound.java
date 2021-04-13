@@ -9,6 +9,7 @@ public class Mound {
     private int amountOfNutrients;
     private int numberOfSpores;
     private LinkedList<Mushroom> mound;
+    private LinkedList<Mushroom> remove; //List to store list of mushrooms to remove.
 
     /**
      * Mound Constructor.
@@ -18,6 +19,7 @@ public class Mound {
     public Mound(int amountOfNutrients) {
         this.amountOfNutrients = amountOfNutrients;
         mound = new LinkedList<>();
+        remove = new LinkedList<>();
         this.numberOfSpores = 0;
     }
 
@@ -106,14 +108,18 @@ public class Mound {
         for (Mushroom mushroom : mound) {
             //If it is the mushrooms' lifespan, remove the mushroom.
             if (mushroom.getNumberOfDays() == lifespan) {
-                mound.remove(mushroom);
-                numberRemoved--;
+                remove.add(mushroom);
+                numberRemoved++;
             }
             //If mound is out of nutrients and no mushrooms in mound, this mound is done.
             else {
                 //Grows each mushroom in mound for simulation
                 mushroom.setNumberOfDays(mushroom.getNumberOfDays() + 1);
             }
+        }
+        //Removes mushrooms from LinkedList
+        for(Mushroom mushroom: remove){
+            mound.remove(mushroom);
         }
         return (numberRemoved);
     }
