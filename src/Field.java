@@ -97,8 +97,6 @@ public class Field {
                     for (int k = 0; k < numberRemoved; k++) {
                         addSpores(position, numberRemoved);
                     }
-
-
                 }
             }
             //prints field state on day numberOfDays to file
@@ -128,7 +126,8 @@ public class Field {
             field[position[0] + 1][position[1]].addSpores(numberToAdd);
             field[position[0]][position[1] - 1].addSpores(numberToAdd);
             field[position[0]][position[1] + 1].addSpores(numberToAdd);
-        } catch (IndexOutOfBoundsException e) {}
+        } catch (IndexOutOfBoundsException e) {
+        }
     }
 
     /**
