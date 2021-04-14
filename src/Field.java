@@ -120,13 +120,15 @@ public class Field {
      * @param numberToAdd Number of spores to add
      */
     public void addSpores(int[] position, int numberToAdd) {
-        try {
+        if (position[0] >= 1)
             field[position[0] - 1][position[1]].addSpores(numberToAdd);
+        if (position[0] < field.length - 1)
             field[position[0] + 1][position[1]].addSpores(numberToAdd);
+        if (position[1] >= 1)
             field[position[0]][position[1] - 1].addSpores(numberToAdd);
+        if (position[1] < field.length - 1)
             field[position[0]][position[1] + 1].addSpores(numberToAdd);
-        } catch (IndexOutOfBoundsException e) {
-        }
+
     }
 
     /**
