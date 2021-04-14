@@ -126,7 +126,6 @@ public class Mound {
             mound.remove(mushroom);
         }
         remove.clear();
-//        System.out.println(numberRemoved);
         return (numberRemoved);
     }
 }

@@ -96,24 +96,21 @@ public class Field {
                     }
                 }
             }
-            for(Mound[] row : field){
-                for (Mound mound: row) {
+            for (Mound[] row : field) {
+                for (Mound mound : row) {
                     mound.growSpores();
                 }
             }
             //prints field state on day numberOfDays to file
-            for(Mound[] row : field){
-                for(Mound m: row){
+            for (Mound[] row : field) {
+                for (Mound m : row) {
                     maxNumberOfMushroomsInADay += m.getMound().size();
                 }
             }
             //if maximum number of mushrooms, set to maxNum in day
-            System.out.printf(" Number %d\n", maxNumberOfMushroomsInADay);
-            //  Global          Local
             if (maxNumInDay < maxNumberOfMushroomsInADay) {
                 maxNumInDay = maxNumberOfMushroomsInADay;
                 maxDay = numberOfDays;
-                //System.out.printf("Day: %d Number %d", maxDay, maxNumInDay);
             }
             //Checks if all mounds are done
             fieldState();
@@ -160,7 +157,6 @@ public class Field {
      */
     public void fieldState() {
         pw.print("\nDay:" + numberOfDays + "\n");
-        System.out.println("Day: " + numberOfDays);
         for (Mound[] row : field) {
             int numOfMushrooms = 0;
             pw.print("|");
