@@ -69,6 +69,8 @@ public class Field {
                 rowNumber++;
             }
         }
+        field[position[0]][position[1]].growFirstMushroom();
+        fieldState();
         fileReader.close();
     }
 
@@ -77,8 +79,6 @@ public class Field {
      */
     public void simulate() {
         boolean keepGoing = true;
-        //Puts first mushroom on field
-        field[position[0]][position[1]].growFirstMushroom();
         //While mushrooms and spores can be grown, keep going.
         while (keepGoing) {
             int maxNumberOfMushroomsInADay = 0;
@@ -88,7 +88,6 @@ public class Field {
                 for (int j = 0; j < field[i].length; j++) {
                     Mound mound = field[i][j];
                     numberRemoved = mound.growMushroom(lifespan);
-                    maxNumberOfMushroomsInADay += mound.getMound().size();
                     position[0] = i;
                     position[1] = j;
                     //If any mushrooms were removed from mound in position [i][j] add spores.
@@ -97,20 +96,29 @@ public class Field {
                     }
                 }
             }
+            for(Mound[] row : field){
+                for (Mound mound: row) {
+                    mound.growSpores();
+                }
+            }
             //prints field state on day numberOfDays to file
-            fieldState();
+            for(Mound[] row : field){
+                for(Mound m: row){
+                    maxNumberOfMushroomsInADay += m.getMound().size();
+                }
+            }
             //if maximum number of mushrooms, set to maxNum in day
+            System.out.printf(" Number %d\n", maxNumberOfMushroomsInADay);
+            //  Global          Local
             if (maxNumInDay < maxNumberOfMushroomsInADay) {
                 maxNumInDay = maxNumberOfMushroomsInADay;
                 maxDay = numberOfDays;
+                //System.out.printf("Day: %d Number %d", maxDay, maxNumInDay);
             }
-            //Adds a day.
-            numberOfDays++;
             //Checks if all mounds are done
+            fieldState();
             keepGoing = isNotDone();
         }
-        //prints summary to file
-        summarize();
     }
 
     /**
@@ -121,13 +129,13 @@ public class Field {
      */
     public void addSpores(int[] position, int numberToAdd) {
         if (position[0] >= 1)
-            field[position[0] - 1][position[1]].addSpores(numberToAdd);
+            field[position[0] - 1][position[1]].addSpores(1);
         if (position[0] < field.length - 1)
-            field[position[0] + 1][position[1]].addSpores(numberToAdd);
+            field[position[0] + 1][position[1]].addSpores(1);
         if (position[1] >= 1)
-            field[position[0]][position[1] - 1].addSpores(numberToAdd);
+            field[position[0]][position[1] - 1].addSpores(1);
         if (position[1] < field.length - 1)
-            field[position[0]][position[1] + 1].addSpores(numberToAdd);
+            field[position[0]][position[1] + 1].addSpores(1);
 
     }
 
@@ -162,6 +170,8 @@ public class Field {
             }
             pw.println();
         }
+        //Adds a day.
+        numberOfDays++;
     }
 
     /**
