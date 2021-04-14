@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Simulates a mushroom farm using mounds and accounting for nutrient levels and spores.
@@ -12,7 +13,13 @@ import java.io.IOException;
 public class MushroomFarmer {
     public static void main(String[] args) throws IOException {
         //Creates new field.
-        Field field = new Field();
+        Field field;
+        if (args.length > 0) {
+            field = new Field(args[0]);
+        } else {
+            field = new Field();
+        }
+
         //Simulates farming simulation.
         field.simulate();
         //Summarizes farming results.

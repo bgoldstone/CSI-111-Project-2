@@ -14,32 +14,42 @@ public class Field {
     private int maxNumInDay = 0; //Maximum number of mushrooms in a day.
     private int maxDay = 0; //The day the maximum number of mushrooms happened on.
     private PrintWriter pw; //Writes to output file.
+    private File fileName;
+    private StringBuilder sb = new StringBuilder();
+    private Scanner scan = new Scanner(System.in);
+
+    public Field(String file) throws IOException {
+        init(file);
+    }
 
     public Field() throws IOException {
         //Prompts user for file name.
-        StringBuilder sb = new StringBuilder();
         System.out.print("What is the file name? ");
-        Scanner scan = new Scanner(System.in);
-        File fileName = new File(scan.nextLine());
+        init(scan.nextLine());
         System.out.println();
+
+    }
+
+
+    public void init(String file) throws IOException {
+        fileName = new File(file);
         sb.append("What is the file name? ").append(fileName.getName()).append("\n");
         //If file name does not exist, keep prompting user.
         while (!fileName.exists()) {
-            System.out.print("Invalid file name! \nWhat is the correct file name?");
+            System.out.print("Invalid file name! \nWhat is the correct file name? ");
             fileName = new File(scan.nextLine());
             System.out.println();
             sb.append("What is the file name? ").append(fileName.getName()).append("\n");
         }
-        //Initializes output file.
-        pw = new PrintWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt");
-        //Writes file prompt as lines in new file.
-        pw.print(sb);
-
-        //Reads in file.
-        Scanner fileReader = new Scanner(fileName);
-        boolean firstFieldLine = true;
-        int rowNumber = 0;
-        String line;
+            //Initializes output file.
+            pw = new PrintWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt");
+            //Writes file prompt as lines in new file.
+            pw.print(sb);
+            //Reads in file.
+            Scanner fileReader = new Scanner(fileName);
+            boolean firstFieldLine = true;
+            int rowNumber = 0;
+            String line;
         //If file has more lines, keep reading.
         while (fileReader.hasNextLine()) {
             line = fileReader.nextLine();
@@ -141,7 +151,7 @@ public class Field {
      * plus the nutrient levels at the end of the simulation
      */
     public void summarize() {
-        pw.print(String.format("The maximum number of mushrooms on a single day was %d on day %d ", maxNumInDay, maxDay));
+        pw.print(String.format("The maximum number of mushrooms on a single day was %d on day %d", maxNumInDay, maxDay));
         pw.print("\nThe nutrients still remaining in the field looks like this:");
         for (Mound[] row : field) {
             pw.print("\n|");
