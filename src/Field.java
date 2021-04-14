@@ -74,7 +74,6 @@ public class Field {
 
     /**
      * Simulates field over a cycle of days, until mushrooms are done growing and there are no nutrients left.
-     *
      */
     public void simulate() {
         boolean keepGoing = true;
@@ -105,9 +104,10 @@ public class Field {
                 maxNumInDay = maxNumberOfMushroomsInADay;
                 maxDay = numberOfDays;
             }
+            //Adds a day.
             numberOfDays++;
             //Checks if all mounds are done
-            keepGoing = isDone();
+            keepGoing = isNotDone();
         }
         //prints summary to file
         summarize();
@@ -134,7 +134,6 @@ public class Field {
     /**
      * Gives Maximum number of Mushrooms in the simulation and the day it happened on
      * plus the nutrient levels at the end of the simulation
-     *
      */
     public void summarize() {
         pw.print(String.format("The maximum number of mushrooms on a single day was %d on day %d ", maxNumInDay, maxDay));
@@ -150,7 +149,6 @@ public class Field {
 
     /**
      * Gives # of Mushrooms in each mound per day
-     *
      */
     public void fieldState() {
         pw.print("\nDay:" + numberOfDays + "\n");
@@ -171,17 +169,16 @@ public class Field {
      *
      * @return boolean
      */
-    public boolean isDone() {
-        int totalNumberOfMushroomsSpores = 0;
+    public boolean isNotDone() {
         for (Mound[] row : field) {
             for (Mound mound : row) {
                 if (mound.getAmountOfNutrients() > 0 && mound.getNumberOfSpores() > 0)
-                    totalNumberOfMushroomsSpores += 1;
+                    return true;
                 if (mound.getMound().size() > 0)
-                    totalNumberOfMushroomsSpores += 1;
+                    return true;
             }
         }
-        return totalNumberOfMushroomsSpores > 0;
+        return false;
     }
 
     /**
