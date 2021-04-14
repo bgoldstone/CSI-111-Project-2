@@ -75,9 +75,8 @@ public class Field {
     /**
      * Simulates field over a cycle of days, until mushrooms are done growing and there are no nutrients left.
      *
-     * @throws IOException
      */
-    public void simulate() throws IOException {
+    public void simulate() {
         boolean keepGoing = true;
         //Puts first mushroom on field
         field[position[0]][position[1]].growFirstMushroom();
@@ -134,9 +133,8 @@ public class Field {
      * Gives Maximum number of Mushrooms in the simulation and the day it happened on
      * plus the nutrient levels at the end of the simulation
      *
-     * @throws IOException
      */
-    public void summarize() throws IOException {
+    public void summarize() {
         pw.print(String.format("The maximum number of mushrooms on a single day was %d on day %d ", maxNumInDay, maxDay));
         pw.print("\nThe nutrients still remaining in the field looks like this:");
         for (Mound[] row : field) {
@@ -151,9 +149,8 @@ public class Field {
     /**
      * Gives # of Mushrooms in each mound per day
      *
-     * @throws IOException
      */
-    public void fieldState() throws IOException {
+    public void fieldState() {
         pw.print("\nDay:" + numberOfDays + "\n");
         System.out.println("Day: " + numberOfDays);
         for (Mound[] row : field) {
