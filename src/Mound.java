@@ -92,15 +92,17 @@ public class Mound {
      */
     public int growMushroom(int lifespan) {
         int numberRemoved = 0;
+
         //if (mound.isEmpty()) {
         //return numberRemoved;
         //}
+
         //if more than 0 spores exist and nutrients available
         for (int i = 0; i < numberOfSpores; i++) {
-            //if nutrients available, grow spores, else spores won't grow.
             if (amountOfNutrients > 0) {
                 mound.add(new Mushroom());
                 amountOfNutrients--;
+                numberOfSpores--;
             }
         }
 
