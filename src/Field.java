@@ -151,7 +151,7 @@ public class Field {
      * plus the nutrient levels at the end of the simulation
      */
     public void summarize() {
-        pw.print(String.format("The maximum number of mushrooms on a single day was %d on day %d", maxNumInDay, maxDay));
+        pw.print(String.format("\nThe maximum number of mushrooms on a single day was %d on day %d", maxNumInDay, maxDay));
         pw.print("\nThe nutrients still remaining in the field looks like this:");
         for (Mound[] row : field) {
             pw.print("\n|");
