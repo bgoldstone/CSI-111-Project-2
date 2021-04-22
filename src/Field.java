@@ -168,7 +168,6 @@ public class Field {
     public void fieldState() {
         pw.print("\nDay:" + numberOfDays + "\n");
         for (Mound[] row : field) {
-            int numOfMushrooms = 0;
             pw.print("|");
             for (Mound mound : row) {
 

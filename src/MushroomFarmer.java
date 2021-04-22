@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Simulates a mushroom farm using mounds and accounting for nutrient levels and spores.
