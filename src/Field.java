@@ -24,7 +24,7 @@ public class Field {
 
     public Field() throws IOException {
         //Prompts user for file name.
-        System.out.print("What is the file name? ");
+        System.out.print("Please enter the name of the file containing the field: ");
         init(scan.nextLine());
         System.out.println();
 
@@ -33,13 +33,13 @@ public class Field {
 
     public void init(String file) throws IOException {
         fileName = new File(file);
-        sb.append("What is the file name? ").append(fileName.getName()).append("\n");
+        sb.append("Please enter the name of the file containing the field: ").append(fileName.getName()).append("\n");
         //If file name does not exist, keep prompting user.
         while (!fileName.exists()) {
-            System.out.print("Invalid file name! \nWhat is the correct file name? ");
+            System.out.print("Invalid file name! \nPlease enter the name of the file containing the field: ");
             fileName = new File(scan.nextLine());
             System.out.println();
-            sb.append("What is the file name? ").append(fileName.getName()).append("\n");
+            sb.append("Please enter the name of the file containing the field: ").append(fileName.getName()).append("\n");
         }
             //Initializes output file.
             pw = new PrintWriter(fileName.getName().substring(0, fileName.getName().indexOf(".")) + "_out.txt");
